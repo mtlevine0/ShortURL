@@ -14,17 +14,9 @@ public class URLDao {
     public void addURL(URL bean) {
         Session session = SessionUtil.getSession();        
         Transaction tx = session.beginTransaction();
-        addURL(session,bean);        
+    	session.save(bean);
         tx.commit();
         session.close(); 
-    }
-    
-    private void addURL(Session session, URL bean) {
-        URL url = new URL();
-        url.setUuid(bean.getUuid());
-        url.setTargetURL(bean.getTargetURL());
-        url.setHitCount(bean.getHitCount());
-        session.save(url);
     }
     
     public List<URL> getURL(String redirectId) {
